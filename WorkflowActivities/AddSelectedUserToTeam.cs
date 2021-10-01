@@ -4,7 +4,7 @@ using Microsoft.Xrm.Sdk.Workflow;
 using System;
 using System.Activities;
 
-namespace D365_Core_Workflows
+namespace D365_Core_Workflows.WorkflowActivities
 {
     public class AddSelectedUserToTeam : CodeActivity
     {

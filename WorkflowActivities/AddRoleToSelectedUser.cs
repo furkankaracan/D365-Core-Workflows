@@ -6,7 +6,7 @@ using System;
 using System.Activities;
 using System.Linq;
 
-namespace D365_Core_Workflows
+namespace D365_Core_Workflows.WorkflowActivities
 {
     public class AddRoleToSelectedUser : CodeActivity
     {

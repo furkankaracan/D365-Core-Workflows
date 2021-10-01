@@ -110,9 +110,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddRoleToSelectedUser.cs" />
-    <Compile Include="AddSelectedUserToTeam.cs" />
-    <Compile Include="CalculateRollupField.cs" />
+    <Compile Include="WorkflowActivities\AddRoleToSelectedUser.cs" />
+    <Compile Include="WorkflowActivities\AddSelectedUserToTeam.cs" />
+    <Compile Include="WorkflowActivities\CalculateRollupField.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

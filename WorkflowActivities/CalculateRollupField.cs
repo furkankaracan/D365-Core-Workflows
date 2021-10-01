@@ -9,7 +9,7 @@ using Microsoft.Xrm.Sdk.Query;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Metadata;
 
-namespace D365_Core_Workflows
+namespace D365_Core_Workflows.WorkflowActivities
 {
     public class CalculateRollupField : CodeActivity
     {
