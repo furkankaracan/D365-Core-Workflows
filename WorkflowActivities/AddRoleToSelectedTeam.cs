@@ -7,12 +7,12 @@ using System.Linq;
 
 namespace D365_Core_Workflows.WorkflowActivities
 {
-    public class AddRoleToSelectedUser : CodeActivity
+    public class AddRoleToSelectedTeam : CodeActivity
     {
         [RequiredArgument]
-        [Input("User")]
-        [ReferenceTarget("systemuser")]
-        public InArgument<EntityReference> User { get; set; }
+        [Input("Tean")]
+        [ReferenceTarget("team")]
+        public InArgument<EntityReference> Team { get; set; }
 
         [RequiredArgument]
         [Input("Role")]
@@ -50,27 +50,27 @@ namespace D365_Core_Workflows.WorkflowActivities
             #region Parameters
             tracingService.Trace("Reading Input Parameters");
 
-            var userRef = this.User.Get(executionContext);
+            var teamRef = this.Team.Get(executionContext);
             var roleRef = this.Role.Get(executionContext);
 
-            if (userRef.Id == Guid.Empty || roleRef.Id == Guid.Empty)
+            if (teamRef.Id == Guid.Empty || roleRef.Id == Guid.Empty)
                 throw new InvalidPluginExecutionException("Invalid input parameters! Please contact with your System Administrator.");
 
             #endregion Parameters
 
-            #region Retrieve User
-            tracingService.Trace("Retrieving User ");
+            #region Retrieve Team
+            tracingService.Trace("Retrieving Team ");
 
-            Entity systemUser = service.Retrieve("systemuser", userRef.Id, new ColumnSet("businessunitid"));
+            Entity team = service.Retrieve("team", teamRef.Id, new ColumnSet("businessunitid"));
 
-            EntityReference businessUnitRef = systemUser.GetAttributeValue<EntityReference>("businessunitid");
+            EntityReference businessUnitRef = team.GetAttributeValue<EntityReference>("businessunitid");
 
-            #endregion Retrieve User
+            #endregion Retrieve Team
 
             #region Retrieve Roles
-            tracingService.Trace("Retrieving User Root Roles ");
+            tracingService.Trace("Retrieving Team Root Roles ");
 
-            var userRootRoles = service.RetrieveMultiple(new QueryExpression("role")
+            var teamRootRoles = service.RetrieveMultiple(new QueryExpression("role")
             {
                 ColumnSet = new ColumnSet("parentrootroleid"),
                 Criteria = new FilterExpression
@@ -82,17 +82,18 @@ namespace D365_Core_Workflows.WorkflowActivities
                 }
             }).Entities;
 
-            tracingService.Trace("Retrieved User Root Roles ");
+            tracingService.Trace("Retrieved Team Root Roles ");
             #endregion Retrieve Roles
 
-            if (userRootRoles.Any())
+            if (teamRootRoles.Any())
             {
-                Entity userRole = userRootRoles[0];
-                EntityReference parentRootRoleRef = userRole.GetAttributeValue<EntityReference>("parentrootroleid");
+                Entity teamRole = teamRootRoles[0];
+                EntityReference parentRootRoleRef = teamRole.GetAttributeValue<EntityReference>("parentrootroleid");
 
                 #region Retrieve Root Roles
                 tracingService.Trace("Retrieving Root Roles ");
 
+                // Retrieve the correct role for that businessunit
                 var rootRoles = service.RetrieveMultiple(new QueryExpression("role")
                 {
                     ColumnSet = new ColumnSet("roleid"),
@@ -112,15 +113,15 @@ namespace D365_Core_Workflows.WorkflowActivities
 
                 #endregion Retrieve Root Roles
 
-                tracingService.Trace("Adding Role to the User");
+                tracingService.Trace("Adding Role to the Team");
 
-                service.Associate("systemuser",
-                    userRef.Id,
-                    new Relationship("systemuserroles_association"),
+                service.Associate("team",
+                    teamRef.Id,
+                    new Relationship("teamroles_association"),
                     new EntityReferenceCollection() { role.ToEntityReference() }
                     );
 
-                tracingService.Trace("Role has added to the User");
+                tracingService.Trace("Role has added to the Team");
             }
         }
     }
