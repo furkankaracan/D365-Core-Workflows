@@ -110,6 +110,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\DynamicUrlParser.cs" />
     <Compile Include="WorkflowActivities\AddRoleToSelectedTeam.cs" />
     <Compile Include="WorkflowActivities\AddRoleToSelectedUser.cs" />
     <Compile Include="WorkflowActivities\AddSelectedUserToTeam.cs" />
@@ -117,6 +118,7 @@
     <Compile Include="WorkflowActivities\CalculateRollupField.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WorkflowActivities\IsUserInSelectedTeam.cs" />
+    <Compile Include="WorkflowActivities\SetMultiSelectOptionSet.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
