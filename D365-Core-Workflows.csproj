@@ -110,6 +110,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="WorkflowActivities\CloneRecord.cs" />
     <Compile Include="Helpers\DynamicUrlParser.cs" />
     <Compile Include="WorkflowActivities\AddRoleToSelectedTeam.cs" />
     <Compile Include="WorkflowActivities\AddRoleToSelectedUser.cs" />
