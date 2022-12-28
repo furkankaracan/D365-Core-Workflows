@@ -8,3 +8,4 @@ Custom Workflow Activites for Dynamics 365.
 - CloneRecord
 - IsUserInSelectedTeam
 - SetMultiSelectOptionSet
+- GetRecordId
