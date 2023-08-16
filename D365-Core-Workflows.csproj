@@ -120,6 +120,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WorkflowActivities\GetRecordId.cs" />
     <Compile Include="WorkflowActivities\IsUserInSelectedTeam.cs" />
+    <Compile Include="WorkflowActivities\RemoveRoleFromSelectedTeam.cs" />
+    <Compile Include="WorkflowActivities\RemoveRoleFromSelectedUser.cs" />
     <Compile Include="WorkflowActivities\SetMultiSelectOptionSet.cs" />
   </ItemGroup>
   <ItemGroup>
