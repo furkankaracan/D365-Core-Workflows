@@ -6,6 +6,8 @@ Custom Workflow Activites for Dynamics 365.
 - AddTeamToEmailRecipients
 - CalculateRollupField
 - CloneRecord
+- GetRecordId
+- RemoveRoleFromSelectedTeam
+- RemoveRoleFromSelectedUser
 - IsUserInSelectedTeam
 - SetMultiSelectOptionSet
-- GetRecordId
